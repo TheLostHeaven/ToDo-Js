@@ -5,8 +5,46 @@
 }
 
 body{
+  background: black;
   flex-direction: column;
+  color: whitesmoke;
 
+}
+
+.container {
+  width: 100%;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items:  center;
+  color: rgb(89, 199, 183);
+  padding: 3rem;
+  font-size: 3rem;
+}
+
+input{
+  min-width: 100px;
+  height: 2rem;
+  border-radius: 10px 0 10px 0;
+  border: solid 2px rgb(89, 199, 183);
+  padding-left:  1rem;
+  color:  rgb(253, 0, 0);
+  font-size: 1rem;
+  outline: none;
+}
+
+::placeholder {
+  color: rgb(89, 199, 183);
+}
+
+button{
+  width: 200px;
+  height: 2rem;
+  background:  rgb(89, 199, 183);
+  border: none;
+  color: aliceblue;
 }
 
 a.todo-delete{
@@ -18,83 +56,101 @@ a.todo-delete{
   text-decoration: none;
 }
 
-
-
-/* .container{
-  font-weight: 300;
-  width: 100%;
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  margin-top: 5rem;
+/* use it in dark theme */
+.input-container {
   position: relative;
-} */
-
-
-
-/* .form__group {
-  margin-top: 5rem;
-  position: relative;
-  padding: 20px 0 0;
-  width: 100%;
-  max-width: 180px;
+  margin: 50px auto;
+  width: 190px;
 }
 
-.form__field {
-  font-family: inherit;
-  width: 100%;
+.input-container input[type="text"] {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
   border: none;
-  border-bottom: 2px solid #9b9b9b;
-  outline: 0;
-  font-size: 17px;
-  color: #fff;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
+  border-bottom: 2px solid #a5a2a2;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
 }
 
-.form__field::placeholder {
-  color: transparent;
-}
-
-.form__field:placeholder-shown ~ .form__label {
-  font-size: 17px;
-  cursor: text;
-  top: 20px;
-}
-
-.form__label {
+.label {
+  transition: all 0.3s ease;
+  color: #d3d2d2;
   position: absolute;
   top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 17px;
-  color: #9b9b9b;
+  left: 0;
   pointer-events: none;
 }
 
-.form__field:focus {
-  padding-bottom: 6px;
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #116399, #38caef);
-  border-image-slice: 1;
+.input-container input[type="text"]:focus~.label,
+        .input-container input[type="text"]:valid~.label {
+  top: -20px;
+  transition: 0.3s;
+  color: rgb(172, 46, 172);
 }
 
-.form__field:focus ~ .form__label {
+.input-container .underline {
   position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 17px;
-  color: #38caef;
-  font-weight: 700;
+  bottom: 4px;
+  left: -7px;
+  height: 2px;
+  width: 110%;
+  background-color: rgb(172, 46, 172);
+  transform: scaleX(0);
 }
 
-/* reset input */
-/* .form__field:required, .form__field:invalid {
-  box-shadow: none;
-} */
+.input-container .sideline {
+  position: relative;
+  bottom: 15px;
+  right: 18px;
+  height: 2px;
+  width: 18%;
+  background-color: rgb(172, 46, 172);
+  transform: scaleX(0);
+  rotate: 90deg;
+}
+
+.input-container .upperline {
+  position: absolute;
+  bottom: 30px;
+  left: -8px;
+  height: 2px;
+  width: 110%;
+  background-color: rgb(172, 46, 172);
+  transform: scaleX(0);
+}
+
+.input-container .line {
+  position: relative;
+  bottom: 17px;
+  left: 178px;
+  height: 2px;
+  width: 18%;
+  background-color: rgb(172, 46, 172);
+  transform: scaleX(0);
+  rotate: 90deg;
+}
+
+.input-container input[type="text"]:focus~.underline,
+        .input-container input[type="text"]:valid~.underline {
+  transform: scaleX(1);
+  transition: 1s;
+}
+
+.input-container input[type="text"]:focus~.sideline,
+        .input-container input[type="text"]:valid~.sideline {
+  transform: scaleX(1);
+  transition: 1s;
+}
+
+.input-container input[type="text"]:focus~.upperline,
+        .input-container input[type="text"]:valid~.upperline {
+  transform: scaleX(1);
+  transition: 1s;
+}
+
+.input-container input[type="text"]:focus~.line,
+        .input-container input[type="text"]:valid~.line {
+  transform: scaleX(1);
+  transition: 1s;
+}
