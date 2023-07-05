@@ -23,19 +23,36 @@ mongoose.connect(process.env.MONGO_DB_URI)
 
 // mongoose.connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true})
 
+
+
+// CRUD Post
 app.get("/",(req, res) => {
-  res.render(`index`)
+  Todo.find()
+  .then(result => {
+    res.render(`index`, {data: result })
+    console.log(result)
+  })
 })
 
+// CRUD Post
 app.post("/",(req,res) => {
   const todo = new Todo({
-      todo: "testing"
+      todo: req.body.todoValue
 
   })
   todo.save()
   .then(result =>{
       res.redirect("/")
   })
+})
+
+// CRUD Delete
+app.delete(`/:id`, (req, res) => {
+    Todo.findByIdAndDelete(req.params.id)
+    .then(result => {
+      console.log(result)
+    })
+
 })
 
 app.listen(port,() => {
