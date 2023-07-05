@@ -13,9 +13,16 @@
 
 <div class="container">
   <h1>ToDo List</h1>
-  <form action="/" method="POST" autocomplete="off">
-    <input type="text" placeholder="Add todos..." name="todoValue" required>
-    <button type="submit">Add</button>
+  <div class="input-container">
+    <form action="/" method="POST" autocomplete="off">
+      <input type="text" id="input" name="todoValue" required>
+      <!-- <button type="submit">Add</button> -->
+    <label class="label" for="input">Enter Text</label>
+    <div class="underline"></div>
+    <div class="sideline"></div>
+    <div class="upperline"></div>
+    <div class="line"></div>
+</div>
 
   </form>
 
