@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Styles -->
   <link rel="stylesheet" href="css/styles.css">
-
+  <link rel="stylesheet" href="css/button-input.css">
+  <link rel="stylesheet" href="css/buttons.css">
   <title>ToDo-List</title>
 </head>
 
@@ -29,15 +31,20 @@
   <% if(data) { %>
     <% data.forEach(todoValue => {%>
       <div class="todo-container">
-        <div class="todo-value"><%= todoValue.todo %> </div>
+        <div class="todo-value"><%= todoValue.todo %></div>
           <div>
             <a class="todo-delete <%= todoValue.id %>" >Delete</a>
+          </div>
+          <div>
+            <a class="todo-update <%= todoValue.id %>" >Update</a>
           </div>
       </div>
         <%})%>
       <% } %>
 </div>
 
+
+<!-- Delete-->
 <Script>
   const deleteButton = document.querySelectorAll(".todo-delete")
 
@@ -51,6 +58,8 @@
     })
   })
 </Script>
+
+<!-- Update -->
 
 </body>
 
