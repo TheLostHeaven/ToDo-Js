@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_DB_URI)
 
 
 
-// CRUD Post
+// CRUD Get
 app.get("/",(req, res) => {
   Todo.find()
   .then(result => {
@@ -55,12 +55,20 @@ app.delete(`/:id`, (req, res) => {
 
 })
 
+// CRUD Update
+app.put(`/update/:id`, (req, res) =>{
+  const id = req.params.id;
+
+  res.send(`Dato actualizado correctamente`)
+})
+
+// Listen Port
 app.listen(port,() => {
   console.log("Port: " + port)
 })
 
 
-// // Routers
+// Routers
 // const authorRouters = require(`./routers/author`)
 
 
@@ -69,9 +77,4 @@ app.listen(port,() => {
 
 
 
-// // app.post('/api/author/create', ControllerAuthor.create)
-
-// mongoose.connect(process.env.MONGO_DB_URI)
-// .then(() => console-log(`Conect to db`))
-// .catch((err)=> console.error(err))
-
+// app.post('/api/author/create', ControllerAuthor.create)
