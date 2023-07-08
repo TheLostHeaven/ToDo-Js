@@ -34,6 +34,24 @@ app.get("/",(req, res) => {
   })
 })
 
+// Get for ID List
+app.get("/:id", (req, res) => {
+  const todoId = req.params.id;
+  Todo.findById(todoId)
+  .then(todo => {
+      if (!todo) {
+      res.status(404).send('Tarea no encontrado.');
+      return;
+      }
+
+      res.render('update', { todo });
+  })
+  .catch(error => {
+      console.error(error);
+      res.status(500).send('Error al buscar la tarea.');
+  });
+});
+
 // CRUD Post
 app.post("/",(req,res) => {
   const todo = new Todo({
@@ -46,6 +64,41 @@ app.post("/",(req,res) => {
   })
 })
 
+app.post("/:id", (req, res) => {
+  const todoId = req.params.id;
+  const updatedTodo = req.body.todoValue;
+
+  Todo.findByIdAndUpdate({ _id: todoId }, { todo: updatedTodo })
+  .then(() => {
+      res.redirect("/");
+  })
+  .catch(error => {
+      console.error(error);
+      res.status(500).send('Error al actualizar la información.');
+  });
+});
+
+//Update List
+app.patch('/:id', (req, res) => {
+  const todoId = req.params.id;
+  const todoValue = req.body.todoValue;
+
+  Todo.findByIdAndUpdate(todoId, { todo: todoValue }, { new: true })
+  .then(updatedTodo => {
+      if (!updatedTodo) {
+      res.status(404).send('Tarea no encontrado.');
+      return;
+      }
+
+      console.log(updatedTodo);
+      res.redirect('/');
+  })
+  .catch(error => {
+      console.error(error);
+      res.status(500).send('Error al actualizar la Tarea.');
+  });
+});
+
 // CRUD Delete
 app.delete(`/:id`, (req, res) => {
     Todo.findByIdAndDelete(req.params.id)
@@ -55,12 +108,6 @@ app.delete(`/:id`, (req, res) => {
 
 })
 
-// CRUD Update
-app.put(`/update/:id`, (req, res) =>{
-  const id = req.params.id;
-
-  res.send(`Dato actualizado correctamente`)
-})
 
 // Listen Port
 app.listen(port,() => {
@@ -68,13 +115,3 @@ app.listen(port,() => {
 })
 
 
-// Routers
-// const authorRouters = require(`./routers/author`)
-
-
-// app.use(express.json())
-// app.use(`/api/author`, authorRouters)
-
-
-
-// app.post('/api/author/create', ControllerAuthor.create)
