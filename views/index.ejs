@@ -36,7 +36,11 @@
             <a class="todo-delete <%= todoValue.id %>" >Delete</a>
           </div>
           <div>
-            <a class="todo-update <%= todoValue.id %>" >Update</a>
+            <!-- <a class="todo-update <%= todoValue.id %>" >Update</a> -->
+          <form action="/<%= todoValue.id %>" method="POST" class="todo-update-form">
+              <input class="update-list"type="text" name="todoValue" placeholder="Update ToDo..." required>
+              <button class="todo-update" type="submit">Update</button>
+          </form>
           </div>
       </div>
         <%})%>
@@ -60,6 +64,20 @@
 </Script>
 
 <!-- Update -->
+
+<!-- <script>
+  const updateButton = document.querySelectorAll(".todo-update")
+
+  updateButton.forEach((button, i) => {
+    button.addEventListener("click",() => {
+      const endPoint = `/${button.classList[1]}`
+        fetch(endPont,{
+          methd:"PUT"
+        })
+        window.location.href = "/"
+    })
+  })
+</script> -->
 
 </body>
 
